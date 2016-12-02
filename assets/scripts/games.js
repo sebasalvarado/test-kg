@@ -29,6 +29,8 @@ function produceTitleDate(){
 */
 function produceTable(innings,home_innings,away_innings,home,away){
   var table = "<table class='table table-hover'>";
+  // Getting the number of columns of our table
+  var iterations = innings + 3;
   // Produce the headers
   table += "<tr class='heading'>";
   //Each header gets populated
@@ -37,10 +39,11 @@ function produceTable(innings,home_innings,away_innings,home,away){
   for(i = 1; i < innings; i++){
     table += "<th>" + i + "</th>"
   }
+  table += "<th>R</th><th>H</th><th>E</th>";
   //Closing header
   table += "</tr>";
 // Loop invariant: every row will add a team's score
-for(i = 0; i < innings; i++ ){
+for(i = 0; i < home_innings.length; i++ ){
   if (i==0){
     // Add the name
     table += "<tr><td>" + home + "</td>";
@@ -49,8 +52,9 @@ for(i = 0; i < innings; i++ ){
     table += "<td>" + home_innings[i] + "</td>";
   }
 }
+
   table += "</tr>";
-for(i = 0; i < innings; i++){
+for(i = 0; i < away_innings.length; i++){
   if (i==0){
     // Add the name
     table += "<tr><td>" + away + "</td>";
@@ -64,6 +68,9 @@ table += "</tr>";
 table += "</table>"
 //Append it to the div
 $(".container").find("#content").find("#description").append(table);
+$(".container").find("#headerDate").append("<h2>Details</h2>");
+$(".container").find("#headerDate").append("<h4>To go back, click submit button again</h4>");
+
 }
 
 /**
@@ -79,6 +86,16 @@ gamesApp.populateDescription = function(){
     home_innings.push(linescore[i].home);
     away_innings.push(linescore[i].away);
   }
+  // Pushing the values for R H and E
+  var inning_line = data_desc.data.boxscore.linescore;
+  home_innings.push(inning_line.home_team_runs);
+  home_innings.push(inning_line.home_team_hits);
+  home_innings.push(inning_line.home_team_errors);
+
+  away_innings.push(inning_line.away_team_runs);
+  away_innings.push(inning_line.away_team_hits);
+  away_innings.push(inning_line.away_team_errors);
+
   // Get the team name
   var home_team = data_desc.data.boxscore.home_sname;
   var away_team = data_desc.data.boxscore.away_fname;
@@ -95,6 +112,7 @@ gamesApp.getDescResults = function(url){
     //Empty the previous list
     $("#content").find(".list-group").empty();
     $("#content").find("#headerDate").empty();
+    $("#content").find("#description").empty();
     // Send it to populate Desc
     gamesApp.populateDescription();
   });
