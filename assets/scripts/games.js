@@ -8,6 +8,7 @@ var favTeam = "Blue Jays";
 //Data gathered from the API
 var data = {};
 var data_desc = {};
+// Mapping from date number to String
 var monToString = {"01":"January", "02":"February", "03": "March",
   "04":"April","05":"May","06":"June","07":"July", "08":"August","09":"September",
 "10":"October","11":"November","12":"December"};
@@ -25,7 +26,7 @@ function produceTitleDate(){
 * @param headers innings is how many innings there are
 * @param home_innings Array having the score for that innings
 * @param away_innings ''
-* post-condition:
+* post-condition: Table is produced and put into the DOM
 */
 function produceTable(innings,home_innings,away_innings,home,away){
   var table = "<table class='table table-hover'>";
@@ -74,7 +75,7 @@ $(".container").find("#headerDate").append("<h4>To go back, click submit button 
 }
 
 /**
- *
+ * Process the data gathered from API to send the correct innings number
  */
 gamesApp.populateDescription = function(){
   // Get the array of linescore by innings
@@ -103,7 +104,7 @@ gamesApp.populateDescription = function(){
   produceTable(linescore.length, home_innings, away_innings,home_team,away_team);
 }
 
-/**
+/** Performs HTTP Request to the API and calls the corresponding function
  */
 gamesApp.getDescResults = function(url){
   $.get(url,function(response){

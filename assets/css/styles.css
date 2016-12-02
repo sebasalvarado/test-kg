@@ -16,6 +16,9 @@ img{
   float: right;
   width: 50%;
 }
+.info{
+  float: right;
+}
 #datePicker{
   outline: 1px solid orange;
 }
