@@ -1,0 +1,21 @@
+h2 {
+  font-size: 30px;
+  text-align: center;
+  font-family: 'Fjalla One', sans-serif;
+  margin-bottom: 20px;
+}
+
+img{
+  margin: 0;
+}
+.listEntryTeam{
+  float:left;
+  width: 50%;
+}
+.listEntryScore{
+  float: right;
+  width: 50%;
+}
+#datePicker{
+  outline: 1px solid orange;
+}

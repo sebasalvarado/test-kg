@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<head>
+  <%include ./partials/head %>
+  <!-- CSS styling for page -->
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script src="../assets/scripts/games.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class ="row">
+    <!-- Title -->
+    <!-- Date Picker -->
+    <div id="datePicker" class="col-md-4">
+      <h2> MLB Scoreboard </h2>
+      <img src="http://www.brandsoftheworld.com/sites/default/files/styles/logo-thumbnail/public/052014/mlb.png?itok=gCbISPET">
+      <form id ="newDate" target ="hiddenFrame" class="form-inline" role="search">
+          <div class="form-group">
+              <label for="dateName"> Pick a Date </label>
+              <input id = "selection" type="date" name ="date"  class="form-control">
+          </div>
+          <input type="submit" class="btn btn-default" value="Submit">
+      </form>
+    </div>
+
+    <!--Content-->
+    <div id ="content" class="col-md-offset-4 col-md-6">
+        <!-- Header Date-->
+        <div id="headerDate">
+
+        </div>
+        <!-- Input Field or Form -->
+        <div id = "dateInfo">
+        </div>
+        <!--Content-->
+        <div id ="list" class="list-group">
+        </div>
+    </div>
+    <iframe name="hiddenFrame" width="0" height="0" border="0" style="display: none;"></iframe>
+  </div>
+</div>
+</body>
