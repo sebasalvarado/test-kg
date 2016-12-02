@@ -57,6 +57,9 @@ gamesApp.renderListEntry = function(game,index){
   // Highlight the winners name
   var winner = (score_home >= score_away? 'home':'away');
   list.find("#" + index).find("#" + winner).effect("highlight", {color:"#FB4D3D"},300000000000);
+  // Add the URL for boxscore.json as value in the tag
+  var boxUrl = game.game_data_directory + "/boxscore.json";
+  list.find("#" + index).attr("value", boxUrl);
 }
 /** Function that calls the API and process the results
  *
@@ -86,16 +89,12 @@ gamesApp.populateList = function(data){
   }
   // Check if game is an array or an object
   if(gamesData.game instanceof Array){
-    console.log("array");
     // TODO: Order the array having the preferred team first
-    var len = gamesData.game.length;
-    console.log(gamesData.game);
-    for(var i; i < len; i++){
+    for(i = 0; i < gamesData.game.length; i++){
       // Produce one list entry per game
-      console.log(i);
       gamesApp.renderListEntry(gamesData.game[i],i);
-      return;
     }
+    return;
   }
   else{
     gamesApp.renderListEntry(gamesData.game,1);
