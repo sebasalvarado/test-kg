@@ -8,11 +8,8 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.2",
-    "cookie-parser": "^1.4.3",
-    "cookie-session": "^2.0.0-alpha.1",
     "ejs": "^2.5.3",
     "express": "^4.14.0",
-    "express-validator": "",
-    "http-request": "^0.7.0"
+    "express-validator": ""
   }
 }

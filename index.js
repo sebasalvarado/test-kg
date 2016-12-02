@@ -35,9 +35,5 @@ app.get('/', function(req,res){
     });
 })
 
-// Backend API Endpoints
-app.post('/api/games', games.allGames);
-app.get('/api/games', games.getGames);
-
 app.listen(process.env.PORT || 3000);
 console.log('Listening on port 3000');

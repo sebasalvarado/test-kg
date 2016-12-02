@@ -4,7 +4,6 @@
   <!-- CSS styling for page -->
   <link rel="stylesheet" href="../assets/css/styles.css">
   <script src="../assets/scripts/games.js"></script>
-  <script src="../assets/scripts/descriptions.js"></script>
 </head>
 <body>
   <div class="container">
@@ -14,10 +13,14 @@
     <div id="datePicker" class="col-md-4">
       <h2> MLB Scoreboard </h2>
       <img src="http://www.brandsoftheworld.com/sites/default/files/styles/logo-thumbnail/public/052014/mlb.png?itok=gCbISPET">
-      <form id ="newDate" target ="hiddenFrame" class="form-inline" role="search">
+      <form id ="newDate" target ="hiddenFrame"  role="search">
           <div class="form-group">
-              <label for="dateName"> Pick a Date </label>
+              <label for="selection"> Pick a Date </label>
               <input id = "selection" type="date" name ="date"  class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="teamPick"> Pick a Favourite Team </label>
+            <input id = "teamPick" type="text" name ="team"  class="form-control">
           </div>
           <input type="submit" class="btn btn-default" value="Submit">
       </form>

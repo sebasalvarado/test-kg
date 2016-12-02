@@ -19,7 +19,6 @@ var monToString = {"01":"January", "02":"February", "03": "March",
 function produceTitleDate(){
   var monString = monToString[month];
   var result = "<h2>" + monString + " , " + day + ", " + year + "</h2>";
-  console.log(result);
   $("#content").find("#headerDate").append(result);
 }
 /** Helper function that produces the `table` to be displayed and appends it to the DOM
@@ -182,6 +181,7 @@ gamesApp.getResults = function(query){
 gamesApp.orderedResults = function(results){
   // Loop over the array
   var favouriteGame;
+  var flag = false;
   for(i = 0; i < results.length;i++){
       // When you find the preferred team delete it from array
       // Get the names fo both teams
@@ -189,11 +189,14 @@ gamesApp.orderedResults = function(results){
       var team_2 = results[i].away_team_name;
       if(favTeam == team_1 || favTeam == team_2){
         favouriteGame = results[i];
+        flag = true;
         results.splice(i,1);
       }
   }
   // Push it at the beginning
-  results.unshift(favouriteGame);
+  if(flag){
+    results.unshift(favouriteGame);  
+  }
   // Return ot
   return results;
 }
@@ -249,11 +252,17 @@ gamesApp.init = function(){
     // Clean the list
     $("#content").find(".list-group").empty();
     $("#content").find("#headerDate").empty();
+    $("#content").find("#description").empty();
     // Get the value of the date and prepare the url
     var date = $("#datePicker").find("#newDate").find("#selection").val();
     var url = gamesApp.prepareURL(date);
     // Query the API
     gamesApp.getResults(url);
+    // Listener to change team
+    $("#newDate").find("#teamPick").change(function(){
+      //Change our preference of team
+      favTeam = $(this).val();
+    });
   });
   // Produce the title view
   // Populate the listview with our default date
